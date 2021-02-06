@@ -43,8 +43,8 @@ class LockManagerImpl(application: Application) : LockManager {
             }
 
             override fun onActivityDestroyed(p0: Activity) {
-                if (activityCount == 0) {
-                    Log.d("ASDFASDFAS", "app finish")
+                if (activityCount < 0 && !p0.isChangingConfigurations) {
+                    application.unregisterActivityLifecycleCallbacks(this)
                 }
             }
 
